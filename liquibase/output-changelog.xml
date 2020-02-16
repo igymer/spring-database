@@ -19,4 +19,78 @@
     <changeSet author="Игорь (generated)" id="1581846538693-2">
         <addUniqueConstraint columnNames="FIRST_NAME, LAST_NAME" constraintName="UQ_SINGER_1" tableName="singer"/>
     </changeSet>
+    <changeSet author="Игорь (generated)" id="1581875053244-1">
+        <createTable tableName="album">
+            <column autoIncrement="true" name="ID" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="SINGER_ID" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TITLE" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="RELEASE_DATE" type="date"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Игорь (generated)" id="1581875053244-2">
+        <createTable tableName="singer">
+            <column autoIncrement="true" name="ID" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="FIRST_NAME" type="VARCHAR(60)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LAST_NAME" type="VARCHAR(40)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="BIRTH_DATE" type="date"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Игорь (generated)" id="1581875053244-3">
+        <addUniqueConstraint columnNames="FIRST_NAME, LAST_NAME" constraintName="UQ_SINGER_1" tableName="singer"/>
+    </changeSet>
+    <changeSet author="Игорь (generated)" id="1581875053244-4">
+        <addUniqueConstraint columnNames="SINGER_ID, TITLE" constraintName="UQ_SINGER_ALBUM_1" tableName="album"/>
+    </changeSet>
+    <changeSet author="Игорь (generated)" id="1581875053244-5">
+        <addForeignKeyConstraint baseColumnNames="SINGER_ID" baseTableName="album" constraintName="FK_ALBUM" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="singer" validate="true"/>
+    </changeSet>
+    <changeSet author="Игорь (generated)" id="1581875255268-1">
+        <createTable tableName="album">
+            <column autoIncrement="true" name="ID" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="SINGER_ID" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TITLE" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="RELEASE_DATE" type="date"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Игорь (generated)" id="1581875255268-2">
+        <createTable tableName="singer">
+            <column autoIncrement="true" name="ID" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="FIRST_NAME" type="VARCHAR(60)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LAST_NAME" type="VARCHAR(40)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="BIRTH_DATE" type="date"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Игорь (generated)" id="1581875255268-3">
+        <addUniqueConstraint columnNames="FIRST_NAME, LAST_NAME" constraintName="UQ_SINGER_1" tableName="singer"/>
+    </changeSet>
+    <changeSet author="Игорь (generated)" id="1581875255268-4">
+        <addUniqueConstraint columnNames="SINGER_ID, TITLE" constraintName="UQ_SINGER_ALBUM_1" tableName="album"/>
+    </changeSet>
+    <changeSet author="Игорь (generated)" id="1581875255268-5">
+        <addForeignKeyConstraint baseColumnNames="SINGER_ID" baseTableName="album" constraintName="FK_ALBUM" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="singer" validate="true"/>
+    </changeSet>
 </databaseChangeLog>

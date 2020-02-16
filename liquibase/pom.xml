@@ -13,7 +13,6 @@
 
     <properties>
         <liquibase.version>3.8.6</liquibase.version>
-        <mysql.connector.version>8.0.19</mysql.connector.version>
     </properties>
 
     <dependencies>
@@ -25,9 +24,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>${mysql.connector.version}</version>
         </dependency>
-
     </dependencies>
 
     <build>
