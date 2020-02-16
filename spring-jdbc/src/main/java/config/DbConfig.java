@@ -11,16 +11,16 @@ import javax.sql.DataSource;
 import java.sql.Driver;
 
 @Configuration
-@PropertySource("classpath:/db/jdbc.properties")
+@PropertySource("classpath:db/jdbc.properties")
 public class DbConfig {
 
-    @Value("${driverClassName")
+    @Value("${driverClassName}")
     private String driverClassName;
-    @Value("${url")
+    @Value("${url}")
     private String url;
-    @Value("${userName")
+    @Value("${userName}")
     private String userName;
-    @Value("${password")
+    @Value("${password}")
     private String password;
 
     @Bean
