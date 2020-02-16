@@ -10,14 +10,6 @@
     <artifactId>spring-jdbc</artifactId>
     <modelVersion>4.0.0</modelVersion>
 
-    <build>
-        <plugins>
-            <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
-
     <dependencies>
         <dependency>
             <groupId>ch.qos.logback</groupId>
