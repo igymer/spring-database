@@ -16,6 +16,7 @@
     <properties>
         <maven.compiler.version>3.8.1</maven.compiler.version>
         <org.springframework.version>5.2.3.RELEASE</org.springframework.version>
+        <logback.version>1.2.3</logback.version>
     </properties>
 
     <build>
@@ -35,6 +36,7 @@
 
     <dependencyManagement>
         <dependencies>
+            <!--Spring-->
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-context</artifactId>
@@ -70,6 +72,22 @@
                 <artifactId>spring-test</artifactId>
                 <version>${spring.version}</version>
                 <scope>test</scope>
+            </dependency>
+            <!--Logging-->
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-core</artifactId>
+                <version>${logback.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${logback.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>1.7.30</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
