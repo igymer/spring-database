@@ -18,7 +18,7 @@ public class DbConfig {
     private String driverClassName;
     @Value("${url}")
     private String url;
-    @Value("${userName}")
+    @Value("springUser")
     private String userName;
     @Value("${password}")
     private String password;
