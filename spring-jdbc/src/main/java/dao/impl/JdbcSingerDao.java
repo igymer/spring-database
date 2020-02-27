@@ -2,17 +2,20 @@ package dao.impl;
 
 import dao.SingerDao;
 import entities.Singer;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 
 @Component
 public class JdbcSingerDao implements SingerDao {
 
   private DataSource dataSource;
-  private JdbcTemplate jdbcTemplate;
+  private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
   @Override
   public List<Singer> findAll() {
@@ -26,9 +29,10 @@ public class JdbcSingerDao implements SingerDao {
 
   @Override
   public String findLastNameById(Long id) {
-    return jdbcTemplate
-        .queryForObject("select last_name from singer where id = ?", new Object[]{id},
-            String.class);
+    String sql = "select last_name from singer where id = :singerId";
+    Map<String, Object> params = new HashMap<>();
+    params.put("singerId", id);
+    return namedParameterJdbcTemplate.queryForObject(sql, params, String.class);
   }
 
   @Override
@@ -67,7 +71,8 @@ public class JdbcSingerDao implements SingerDao {
   }
 
   @Autowired
-  public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
-    this.jdbcTemplate = jdbcTemplate;
+  public void setNamedParameterJdbcTemplate(
+      NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+    this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
   }
 }
