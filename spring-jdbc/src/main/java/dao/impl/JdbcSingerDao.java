@@ -5,21 +5,26 @@ import entities.Singer;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 
 @Component
 public class JdbcSingerDao implements SingerDao {
 
-  private DataSource dataSource;
   private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
   @Override
   public List<Singer> findAll() {
-    return null;
+    String sql = "select id, first_name, last_name, birth_date from singer";
+    return namedParameterJdbcTemplate.query(sql, (rs, rownum) -> {
+      Singer singer = new Singer();
+      singer.setId(rs.getLong("id"));
+      singer.setFirstName(rs.getString("first_name"));
+      singer.setLastName(rs.getString("last_name"));
+      singer.setBirthDate(rs.getDate("birth_date"));
+      return singer;
+    });
   }
 
   @Override
@@ -63,11 +68,6 @@ public class JdbcSingerDao implements SingerDao {
   @Override
   public void insertWithDetail(Singer singer) {
 
-  }
-
-  @Autowired
-  public void setDataSource(DataSource dataSource) {
-    this.dataSource = dataSource;
   }
 
   @Autowired

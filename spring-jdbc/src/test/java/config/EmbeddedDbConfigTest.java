@@ -4,10 +4,12 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import dao.SingerDao;
+import entities.Singer;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import javax.sql.DataSource;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -26,13 +28,21 @@ public class EmbeddedDbConfigTest {
     DataSource dataSource = context.getBean("dataSource", DataSource.class);
     assertNotNull(dataSource);
     testDataSource(dataSource);
-    testDao(context.getBean(SingerDao.class));
+    SingerDao dao = context.getBean(SingerDao.class);
+    testDao(dao);
+    testFindAllDao(dao);
   }
 
   private void testDao(SingerDao dao) {
     assertNotNull(dao);
     String lastName = dao.findLastNameById(2L);
     assertEquals("Clapton", lastName);
+  }
+
+  private void testFindAllDao(SingerDao dao) {
+    assertNotNull(dao);
+    List<Singer> singerList = dao.findAll();
+    assertEquals(3, singerList.size());
   }
 
   private void testDataSource(DataSource dataSource) {
