@@ -4,7 +4,7 @@ import entities.Singer;
 
 import java.util.List;
 
-public interface SIngerDao {
+public interface SingerDao {
     List<Singer> findAll();
 
     List<Singer> findByFirstName(String firstName);

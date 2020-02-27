@@ -1,6 +1,6 @@
 package dao.impl;
 
-import dao.SIngerDao;
+import dao.SingerDao;
 import entities.Singer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -10,7 +10,7 @@ import javax.sql.DataSource;
 import java.util.List;
 
 @Component
-public class JdbcSingerDao implements SIngerDao {
+public class JdbcSingerDao implements SingerDao {
 
     private DataSource dataSource;
     private JdbcTemplate jdbcTemplate;
@@ -27,7 +27,7 @@ public class JdbcSingerDao implements SIngerDao {
 
     @Override
     public String findLastNameById(Long id) {
-        return null;
+        return jdbcTemplate.queryForObject("select last_name from singer where id = ?", new Object[]{id}, String.class);
     }
 
     @Override
