@@ -1,25 +1,25 @@
 package dao;
 
 import entities.Singer;
-
 import java.util.List;
 
 public interface SingerDao {
-    List<Singer> findAll();
 
-    List<Singer> findByFirstName(String firstName);
+  List<Singer> findAll();
 
-    String findLastNameById(Long id);
+  List<Singer> findByFirstName(String firstName);
 
-    String findFirstNameById(Long id);
+  String findLastNameById(Long id);
 
-    void insert(Singer singer);
+  String findFirstNameById(Long id);
 
-    void update(Singer singer);
+  void insert(Singer singer);
 
-    void delete(Long singerId);
+  void update(Singer singer);
 
-    List<Singer> findAllWithDetail();
+  void delete(Long singerId);
 
-    void insertWithDetail(Singer singer);
+  List<Singer> findAllWithDetail();
+
+  void insertWithDetail(Singer singer);
 }
