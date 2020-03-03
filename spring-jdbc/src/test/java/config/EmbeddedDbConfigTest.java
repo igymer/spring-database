@@ -31,6 +31,7 @@ public class EmbeddedDbConfigTest {
     SingerDao dao = context.getBean(SingerDao.class);
     testDao(dao);
     testFindAllDao(dao);
+    testFindAllWithAlbum(dao);
   }
 
   private void testDao(SingerDao dao) {
@@ -43,6 +44,12 @@ public class EmbeddedDbConfigTest {
     assertNotNull(dao);
     List<Singer> singerList = dao.findAll();
     assertEquals(3, singerList.size());
+  }
+
+  private void testFindAllWithAlbum(SingerDao dao) {
+    assertNotNull(dao);
+    List<Singer> allWithAlbums = dao.findAllWithAlbums();
+    assertEquals(3, allWithAlbums.size());
   }
 
   private void testDataSource(DataSource dataSource) {

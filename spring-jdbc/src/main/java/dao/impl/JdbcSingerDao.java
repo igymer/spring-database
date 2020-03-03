@@ -1,7 +1,9 @@
 package dao.impl;
 
 import dao.SingerDao;
+import entities.Album;
 import entities.Singer;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -63,6 +65,40 @@ public class JdbcSingerDao implements SingerDao {
   @Override
   public List<Singer> findAllWithDetail() {
     return null;
+  }
+
+  @Override
+  public List<Singer> findAllWithAlbums() {
+    String sql =
+        "select s.id, s.first_name, s.last_name, s.birth_date, a.id as album_id, a.title, a.release_date "
+            + "from singer s left join album a on s.id = a.singer_id";
+    return namedParameterJdbcTemplate.query(sql, rs -> {
+      Singer singer;
+      Map<Long, Singer> map = new HashMap<>();
+      while (rs.next()) {
+        long id = rs.getLong("id");
+        singer = map.get(id);
+        if (singer == null) {
+          singer = new Singer();
+          singer.setId(id);
+          singer.setFirstName(rs.getString("first_name"));
+          singer.setLastName(rs.getString("last_name"));
+          singer.setBirthDate(rs.getDate("birth_date"));
+          singer.setAlbums(new ArrayList<>());
+          map.put(id, singer);
+        }
+        Long albumId = rs.getLong("album_id");
+        if (albumId > 0) {
+          Album album = new Album();
+          album.setId(albumId);
+          album.setSingerId(id);
+          album.setTitle(rs.getString("title"));
+          album.setReleaseDate(rs.getDate("release_date"));
+          singer.addAlbum(album);
+        }
+      }
+      return new ArrayList<>(map.values());
+    });
   }
 
   @Override

@@ -21,5 +21,7 @@ public interface SingerDao {
 
   List<Singer> findAllWithDetail();
 
+  List<Singer> findAllWithAlbums();
+
   void insertWithDetail(Singer singer);
 }
