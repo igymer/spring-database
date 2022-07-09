@@ -106,7 +106,7 @@
   <packaging>pom</packaging>
 
   <properties>
-    <logback.version>1.2.3</logback.version>
+    <logback.version>1.2.9</logback.version>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
     <maven.compiler.version>3.8.1</maven.compiler.version>
